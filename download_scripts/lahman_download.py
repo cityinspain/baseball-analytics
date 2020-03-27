@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Download and Unzip Lahman Data to {data_dir}/lahman/raw
 

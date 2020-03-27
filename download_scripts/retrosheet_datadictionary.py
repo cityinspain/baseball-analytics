@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Use the Retrosheet parsers to generate their Data Dictionaries."""
 
@@ -29,11 +29,11 @@ def get_parser():
 
 def check_for_retrosheet_parsers():
     """Check that parsers can be executed."""
-    p1 = subprocess.run(['cwdaily', '-h'], shell=False, capture_output=True)
+    p1 = subprocess.run(['cwdaily', '-h'], shell=False)
     if p1.returncode != 0:
         raise FileNotFoundError('could not execute cwdaily')
 
-    p1 = subprocess.run(['cwgame', '-h'], shell=False, capture_output=True)
+    p1 = subprocess.run(['cwgame', '-h'], shell=False)
     if p1.returncode != 0:
         raise FileNotFoundError('could not execute cwgame')
 
@@ -92,25 +92,25 @@ def main():
         raise FileNotFoundError('retrosheet data must be downloaded first')
 
     args = ['cwdaily', '-f', '0-153', '-n', '-y', '2019', '2019LAN.EVN']
-    result = subprocess.run(args, shell=False, text=True, capture_output=True)
+    result = subprocess.run(args, shell=False, text=True)
 
     # get header row
     cwdaily_keys = next(csv.reader(io.StringIO(result.stdout)))
 
     args = ['cwgame', '-f', '0-83', '-x', '0-94', '-n', '-y', '2019', '2019LAN.EVN']
-    result = subprocess.run(args, shell=False, text=True, capture_output=True)
+    result = subprocess.run(args, shell=False, text=True)
 
     # get header row
     cwgame_keys = next(csv.reader(io.StringIO(result.stdout)))
 
     args = ['cwdaily', '-f', '0-153', '-d']
-    result = subprocess.run(args, shell=False, text=True, capture_output=True)
+    result = subprocess.run(args, shell=False, text=True)
 
     # stderr not stdout
     cwdaily_values = get_cwdaily_values(result.stderr)
 
     args = ['cwgame', '-f', '0-83', '-x', '0-94', '-d']
-    result = subprocess.run(args, shell=False, text=True, capture_output=True)
+    result = subprocess.run(args, shell=False, text=True)
 
     # stderr not stdout
     cwgame_values = get_cwgame_values(result.stderr)

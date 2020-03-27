@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Wrangle Lahman Data from {data_dir}/lahman/raw to {data_dir}/lahman/wrangled
 

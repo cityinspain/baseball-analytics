@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """Parse all event files in {data_dir}/retrosheet/raw and put result in {data_dir}/retrosheet/parsed"""
 
@@ -47,15 +47,15 @@ def get_parser():
 
 def check_for_retrosheet_parsers():
     """Check that parsers can be executed."""
-    p1 = subprocess.run(['cwevent', '-h'], shell=False, capture_output=True)
+    p1 = subprocess.run(['cwevent', '-h'], shell=False)
     if p1.returncode != 0:
         raise FileNotFoundError('could not execute cwevent')
 
-    p1 = subprocess.run(['cwdaily', '-h'], shell=False, capture_output=True)
+    p1 = subprocess.run(['cwdaily', '-h'], shell=False)
     if p1.returncode != 0:
         raise FileNotFoundError('could not execute cwdaily')
 
-    p1 = subprocess.run(['cwgame', '-h'], shell=False, capture_output=True)
+    p1 = subprocess.run(['cwgame', '-h'], shell=False)
     if p1.returncode != 0:
         raise FileNotFoundError('could not execute cwgame')
 
